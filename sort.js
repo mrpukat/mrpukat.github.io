@@ -25,12 +25,18 @@ function shuffle(array) {
   return array;
 }
 
+// Stole from stackoverflow
+const scale = (num, in_min, in_max, out_min, out_max) => {
+  return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 // Global varibals
 var byssy = false // UI fix
 var arraySize = 50 // size 10 is defalut
 var digits = 2 // radixSort
 var list = []; //Global list
 const continer = d3.select('svg'); // Grafical container
+var context = new AudioContext(); // Audio class
 
 // Grafical globals
 var xScale;
@@ -156,10 +162,10 @@ async function selectionSort() {
 		var bigestIndex = 0;
 		for (var j = 1; j < list.length - i; j++) {
 			if (list[j].value > list[bigestIndex].value) bigestIndex = j;
-			await uppdate(list, bigestIndex, j);
+			await uppdate(list, j, bigestIndex);
 		}
 		swap(list,bigestIndex, list.length-1-i);
-		await uppdate(list, bigestIndex, list.length-1-i);
+		await uppdate(list, list.length-1-i, bigestIndex);
 		
 	}
 	return 1;
@@ -220,13 +226,13 @@ async function submerge(list, l, m, r) {
 		if (llist[i].value <= rlist[j].value) {
 			list[k] = llist[i];
 			list[k].index = k;
-			await uppdate(list, k, i + l);
+			await uppdate(list, i + l, k);
 			i++;
 		}
 		else {
 			list[k] = rlist[j];
 			list[k].index = k;
-			await uppdate(list, k, m + 1 + j);
+			await uppdate(list, m + 1 + j, k);
 			j++;
 		}
 		k++;
@@ -235,7 +241,7 @@ async function submerge(list, l, m, r) {
 	while (i < n1) {
 		list[k] = llist[i];
 		list[k].index = k;
-		await uppdate(list, k, i + l);
+		await uppdate(list, i + l, k);
 		i++;
 		k++;
 	}
@@ -243,7 +249,7 @@ async function submerge(list, l, m, r) {
 	while (j < n2) {
 		list[k] = rlist[j];
 		list[k].index = k;
-		await uppdate(list, k, j + 1 + m);
+		await uppdate(list, j + 1 + m, k);
 		j++;
 		k++;
 	}
@@ -268,7 +274,7 @@ async function mergeSort(l, r) {
 async function quickSort(i, j) {
 	var pivitIndex = findpivot(i,j);
 	swap(list, pivitIndex, j);
-	await uppdate(list, pivitIndex, j);
+	await uppdate(list, j, pivitIndex);
 	var k = await partition(list, i, j-1,list[j].value);
 	swap(list, k, j);
 	await uppdate(list, k, j);
@@ -290,7 +296,7 @@ async function partition(list, left, right, pivit) {
 		}
 		while ((right >= left) && (list[right].value >= pivit)) { 
 			right--;
-			await uppdate(list, left, right);
+			await uppdate(list, right, left);
 		}
 		if (right > left) {
 			swap(list, left, right);
@@ -338,7 +344,7 @@ function heapIsLeaf(pos, n) {
 async function heapRemoveMax(n) {
 	if (n == 0) return 0;
 	swap(list, 0, --n);
-	await uppdate(list, 0, n);
+	await uppdate(list, n, 0);
 	if (n != 0) {
 		await heapSiftdown(0, n);
 	}
@@ -399,6 +405,21 @@ async function uppdate(list, selected1, selected2) {
 		var selected = (selected1 == d.index || selected2 == d.index);
 		d3.select(this).style('fill', selected ? 'red' : 'lightgray');
 	});
+
+	// Play adio (Dose not work right)
+	/*
+	if (selected1 != -1) {
+		var o = context.createOscillator();
+		var  g = context.createGain();
+		o.connect(g);
+		o.type = "triangle";
+		o.frequency.value = scale(selected1, 1, arraySize, 150, 15000);
+		g.connect(context.destination);
+		o.start(0);
+		g.gain.exponentialRampToValueAtTime(
+  			0.00001, context.currentTime + 0.01
+		);
+	}*/
 	await sleep(5);
 	return 1;
 }
