@@ -36,7 +36,11 @@ var arraySize = 50 // size 10 is defalut
 var digits = 2 // radixSort
 var list = []; //Global list
 const continer = d3.select('svg'); // Grafical container
-var context = new AudioContext(); // Audio class
+
+// Audio globals
+var context = new AudioContext();
+var o = null;
+var g = null;
 
 // Grafical globals
 var xScale;
@@ -406,22 +410,45 @@ async function uppdate(list, selected1, selected2) {
 		d3.select(this).style('fill', selected ? 'red' : 'lightgray');
 	});
 
-	// Play adio (Dose not work right)
-	/*
-	if (selected1 != -1) {
-		var o = context.createOscillator();
-		var  g = context.createGain();
-		o.connect(g);
-		o.type = "triangle";
-		o.frequency.value = scale(selected1, 1, arraySize, 150, 15000);
-		g.connect(context.destination);
-		o.start(0);
+
+	// Play adio
+	if (selected1 != -1 && document.getElementById("audio").checked) {
+		var audioOn = (o == null);
+		if (audioOn) {
+			o = context.createOscillator();
+			g = context.createGain();
+			o.connect(g);
+			o.type = "triangle";
+		}
+		o.frequency.value = getFrequency(list, arraySize, selected1, selected2);
+		if (audioOn) {
+			g.connect(context.destination);
+			o.start(0);
+		}
+
+	}
+	if (!document.getElementById("audio").checked && g != null) {
 		g.gain.exponentialRampToValueAtTime(
-  			0.00001, context.currentTime + 0.01
+  			0.00001, context.currentTime + 0.1
 		);
-	}*/
+		g = null;
+		o = null;
+	}
 	await sleep(5);
 	return 1;
+}
+
+function getFrequency(list, arraySize, index1, index2) {
+	var val1 = list[index1].value;
+	var val2;
+	if (index2 == -1) {
+		val2 = val1;
+	}
+	else {
+		val2 = list[index2].value;
+	}
+
+	return scale(Math.floor((val1+val2)/2),1,arraySize,100,500);
 }
 
 async function runSort() {
@@ -456,6 +483,13 @@ async function runSort() {
 		default:
 			console.log("Error in dropDown, value: " + dropDown.value);
 	}
+	if (g != null) {
+		g.gain.exponentialRampToValueAtTime(
+  			0.00001, context.currentTime + 0.1
+		);
+	}
+	g = null;
+	o = null;
 	bars.style('fill', 'green');
 	byssy = false;
 }
