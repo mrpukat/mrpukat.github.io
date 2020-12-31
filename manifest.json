@@ -3,5 +3,5 @@
     "orientation":  "landscape",   /* Could be "landscape" or "portrait" */
     "manifest_version": 2,
     "name": "Manifest Extension",
-    "version": "0.1"
+    "version": "1"
 }
