@@ -77,7 +77,7 @@ function startup() {
 			arraySize = 50;
 			digits = 2;
 			break;
-		case '100':
+			case '100':
 			arraySize = 100;
 			digits = 3;
 			break;
@@ -393,6 +393,7 @@ async function radixSort(k) {
 
 	return 1;
 }
+
 
 function swap(list, i, j) {
 	var tempvar = list[i];

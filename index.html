@@ -1,113 +1,73 @@
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="title" property="og:title" content="Sorting visualization" />
-        <meta property="og:type" content="Sorting visualization" />
-        <meta name="image" property="og:image" content="https://mrpukat.github.io/images/thumbnail.png" />
-        <meta name="description" content="Visualization of 8 different sorting algorithms" />
-        <meta name="description" property="og:description" content="Visualization of 8 different sorting algorithms" />
-        <meta name="author" content="Kevin Barudde" />
-    	<title>Sorting visualization</title>
-        <link rel="manifest" href="./manifest.json">
-        <link rel="icon" href="./images/thumbnail.png">
-    	<style>
-            @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
-                html {
-                    transform: rotate(-90deg);
-                    transform-origin: left top;
-                    width: 90vh;
-                    height: 100vw;
-                    overflow-x: hidden;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                }
-            }
 
-            @media screen and (min-width: 320px) and (max-width: 767px) {
-                .specal {
-                    display: none;
-                }
-            }
+<!doctype html>
+<html lang="en-us">
 
-    		.menu {
-    			width: 40%;
-    			background: rgba(255,255,255,0.5);
-    			position: relative;    			
-    		}
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="description" property="og:description" content="Info about Kevin Bärudde" />
+    <title>Kevin Bärudde</title>
+</head>
 
-    		.continer {
-    			width: 100%;
-    			height: 100%;
-                top:0;
-                right:0;
-    			background-color: black;
-    			position: absolute;
-    		}
+<body>
+        <header>
+            <img class=me src="images/jag.jpeg"/>
+            <h1>Kevin Bärudde</h1>
+            Mail: kevin@barudde.com<br>
+            Phone: +46 72 313 57 09<br>
+<!-- <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="kevinbärudde" data-version="v1"></div> -->
+        </header>
 
-    		.bar {
-    			fill: lightgray;
-    		}
+        <section>
+            <h2>Hello, I'm Kevin</h2>
+            <p>I'm a computer science and software <br>
+                engineering student at Linköping University.</p>
 
-    		.done {
-    			fill: green;
-    		}
+            <p>This site is where i display some of my personal projects.</p>
 
-    		.nav-menu {
-    			display: inline-block;
-    			padding: 10px;
-    		}
+            <p>If you whant to know more about me you can find me on <a href="www.linkedin.com/in/kevinbärudde" target="_blank">Linkedin</a>.</p>
 
-    		.dropDown {
-    			background-color: transparent;
-    			color: rgba(0, 0, 0, 0.5);
-    		}
-
-    		.nav-button {
-    			color: rgba(0, 0, 0, 0.5);
-    		}
+            <p>You can find more from me on my <a href="https://github.com/mrpukat" target="_blank">GitHub</a> page.</p>
 
 
-    	</style>
-    	<script src="https://d3js.org/d3.v6.min.js" defer></script>
-    	<script src="https://d3js.org/d3-scale.v3.min.js" defer></script>
-		<script src="sort.js" defer></script>
+            <ul>
+                <li>
 
-	</head>
- 
-	<body>
-		<svg class="continer"></svg>
-		<nav class="menu">
-			<ul>
-				<li class="nav-menu">
-				    <a class="nav-button" href="#" onclick="buttonShuffel();">Shuffel</a>
-    			</li>
-    			<select class="dropDown" id="sortSelect">
-					<option value="1">boubleSort (slow)</option>
-					<option value="2">selectionSort (slow)</option>
-					<option value="3">insertionSort (slow)</option>
-					<option value="4">shellSort</option>
-					<option value="5">mergeSort</option>
-					<option value="6">quickSort</option>
-					<option value="7">heapSort</option>
-					<option value="8">radixSort</option>
-				</select>
-                <select class="dropDown" id="sortSize" onchange="startup()">
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="200">200 (dont use slow sorting)</option>
-                    <option value="500">500 (dont use slow sorting)</option>
-                    <option value="1000" class="specal">1000 (dont use slow sorting)</option>
-                </select>
-    			<li class="nav-menu">
-    				<a class="nav-button" href="#" onclick="runSort();">Start</a>
-    			</li>
-                <label class="nav-button">
-                    Audio
-                    <input type="checkbox" id="audio">
-                </label>
-			</ul>
-		</nav>
-	</body>
+                    <a href="sort.html" target="_blank">
+                        <h3><b>Sorting visiulizer</b></h3>
+                    </a>
+                    <p>An algoritm visiulizer for diffrent sorting algoritms.</p>
+                </li>
+                <li>
+
+                    <a href="https://www.youtube.com/watch?v=xfPsUIIAIXg" target="_blank">
+                        <h3><b>Colony Control Game</b></h3>
+                    </a>
+                    <p>A game for the cource TDDD23 at liu, <br>
+                        the game was nominated to the <a href="https://www.ida.liu.se/~TDDD23/index.en.shtml" target="_blank">top 10 finalist</a>
+                         for the liu game award.</p>
+
+                    <p>The game was made in Unity.</p>
+
+                </li>
+
+                <li>
+
+                    <a href="https://github.com/mrpukat/programming_contest" target="_blank">
+                        <h3><b>Competitive Programming</b></h3>
+                    </a>
+                    <p>A github repository where i save my Competitive Programming challenges.</p>
+
+                    <p>These challenges are for Kattis or Online judge.</p>
+
+                </li>
+
+                
+            </ul>
+        </section>
+</body>
+
+<!-- <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script> -->
+
+
 </html>

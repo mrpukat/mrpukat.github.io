@@ -1,0 +1,45 @@
+html {
+    background-color: #F1F1F1;
+}
+
+body {
+    padding:15vh;
+    font-family: Bitstream Vera Sans Mono, monospace, sans-serif;
+    color:#686868;
+}
+
+h1, h2 {
+    font-size:1.75em;
+}
+
+
+h1, h2, a, a:link, a:visited {
+    font-family: Bitstream Vera Sans Mono, monospace, sans-serif;
+    color:#00cad5;
+    margin:1vh 0 1vw;
+    line-height:1.1;
+}
+
+a:link, a:visited {
+    text-decoration:none;
+}
+
+header {
+    position:absolute;
+    top:20%;
+    display: inline-block;
+    width: 30vw;
+    height: 30vh;
+}
+
+.me {
+    border-radius:50%;
+    width: 15vW;
+    height: 15vW;
+}
+
+section {
+    padding: 1hv;
+    float: right;
+}
+
