@@ -1,7 +1,0 @@
-{
-    "display":      "standalone", /* Could be "fullscreen", "standalone", "minimal-ui", or "browser" */
-    "orientation":  "landscape",   /* Could be "landscape" or "portrait" */
-    "manifest_version": 2,
-    "name": "Manifest Extension",
-    "version": "1"
-}
