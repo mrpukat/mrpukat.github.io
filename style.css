@@ -25,21 +25,33 @@ a:link, a:visited {
 }
 
 header {
-    position:absolute;
-    top:20%;
-    display: inline-block;
+    position: absolute;
+    top: 20vh;
+    left: 20vw;
+    float: left;
     width: 30vw;
-    height: 30vh;
-}
-
-.me {
-    border-radius:50%;
-    width: 15vW;
-    height: 15vW;
 }
 
 section {
-    padding: 1hv;
     float: right;
+    padding: 1hv;
+    width: 50vW;
 }
 
+
+/* display: inline-block;*/
+
+.me {
+    border-radius:30%;
+     width: 200px;
+     height: 150px;
+}
+
+@media print, screen and (max-width:720px) {
+    header, section {
+        float:none;
+        position:static;
+        width:auto;
+    }
+
+}
