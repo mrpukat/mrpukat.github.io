@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Handwriting recognition</title>
+		<script src="https://docs.opencv.org/4.5.5/opencv.js" type="text/javascript" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js" defer></script>
+		<script src="handwriting.js" defer></script>
+
+		<!--
+    	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+	    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
+		-->
+
+	</head>
+
+	<body>
+		<canvas id="canvas" 		width="300" height="300" style="border:1px solid #000000;"></canvas> 
+		<canvas id="canvasoutput" 	width="300" height="300" style="border:1px solid #000000;"></canvas> 
+		<div id="prediction"></div>
+		<!--
+
+			onload="brython()"
+		<script type="text/python" id="script1">
+            from browser import document
+
+	        document <= "Hello !"
+
+        </script>
+		-->
+	</body>
+</html>
