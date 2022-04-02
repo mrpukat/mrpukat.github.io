@@ -7,7 +7,10 @@ const ctx_in = canvas_in.getContext("2d");
 //const ctx_out = canvas_out.getContext("2d");
 let coord = { x: 0, y: 0 };
 let letter
-const model = tf.loadLayersModel('indexeddb://9941js/model.json');
+
+const model = tf.loadLayersModel('./9941js/model.json');
+
+// https://github.com/mrpukat/mrpukat.github.io/blob/main/cnn
 
 document.addEventListener("mousedown", start);
 document.addEventListener("mouseup", stop);
