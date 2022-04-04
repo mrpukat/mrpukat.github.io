@@ -17,15 +17,16 @@ document.body.appendChild(test_el);
 */
 
 // On Server
-//tf.loadLayersModel('./9941js/model.json').then(res => {
-//	model = res;
-//});
-
-// On lockal
-tf.loadLayersModel('https://raw.githubusercontent.com/mrpukat/mrpukat.github.io/main/cnn/9941js/model.json').then(res => {
+tf.loadLayersModel('./9941js/model.json').then(res => {
 	model = res;
 });
 
+// On lockal
+/*
+tf.loadLayersModel('https://raw.githubusercontent.com/mrpukat/mrpukat.github.io/main/cnn/9941js/model.json').then(res => {
+	model = res;
+});
+*/
 
 canvas_in.addEventListener("mousedown", start);
 canvas_in.addEventListener("mouseup", stop);
