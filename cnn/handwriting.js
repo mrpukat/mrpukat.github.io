@@ -98,7 +98,6 @@ function drawT(e) {
     e.preventDefault();
 
     // translate to mouse event
-    /*
     var clkEvt = document.createEvent('MouseEvent');
     clkEvt.initMouseEvent('mousemove', true, true, window, e.detail, 
                  e.touches[0].screenX, e.touches[0].screenY, 
@@ -106,10 +105,9 @@ function drawT(e) {
                  false, false, false, false, 
                  0, null);
     canvas_in.dispatchEvent(clkEvt);
-    */
 
     // or just handle touch event
-    draw(e);
+    //draw(e);
 }
 
 function draw(event) {
