@@ -29,12 +29,12 @@ tf.loadLayersModel('https://raw.githubusercontent.com/mrpukat/mrpukat.github.io/
 */
 
 // Mouse
-canvas_in.addEventListener("mousedown", start);
-canvas_in.addEventListener("mouseup", stop);
+canvas_in.addEventListener("mousedown", startM);
+canvas_in.addEventListener("mouseup", stopM);
 
 // Mobile
-canvas_in.addEventListener("touchstart", start);
-canvas_in.addEventListener("touchend", stop);
+canvas_in.addEventListener("touchstart", startT);
+canvas_in.addEventListener("touchend", stopT);
 
 //window.addEventListener("resize", resize);
 
@@ -59,19 +59,57 @@ function reposition(event) {
   coord.y = event.clientY - canvas.offsetTop;
 }
 
-function start(event) {
+
+function startM(event) {
   document.addEventListener("mousemove", draw);
+  start(event);
+}
+
+function startT(event) {
+  document.addEventListener("touchmove", drawT);
+  start(event);
+}
+
+function start(event) {
   reposition(event);
 }
 
-function stop() {
+function stopM() {
   document.removeEventListener("mousemove", draw);
-  
+  stop();
+}
+
+function stopT() {
+  document.removeEventListener("touchmove", drawT);
+  stop();
+}
+
+function stop() {
   predict_text.innerHTML = "";
   const subImages = formatImage();
   for (let i = 0; i < subImages.length; ++i) {
 	  predictImage(subImages[i]);
   }
+}
+
+function drawT(e) {
+    // stop touch event
+    e.stopPropagation();
+    e.preventDefault();
+
+    // translate to mouse event
+    /*
+    var clkEvt = document.createEvent('MouseEvent');
+    clkEvt.initMouseEvent('mousemove', true, true, window, e.detail, 
+                 e.touches[0].screenX, e.touches[0].screenY, 
+                 e.touches[0].clientX, e.touches[0].clientY, 
+                 false, false, false, false, 
+                 0, null);
+    canvas_in.dispatchEvent(clkEvt);
+    */
+
+    // or just handle touch event
+    draw(e);
 }
 
 function draw(event) {
