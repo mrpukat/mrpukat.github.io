@@ -28,8 +28,14 @@ tf.loadLayersModel('https://raw.githubusercontent.com/mrpukat/mrpukat.github.io/
 });
 */
 
+// Mouse
 canvas_in.addEventListener("mousedown", start);
 canvas_in.addEventListener("mouseup", stop);
+
+// Mobile
+canvas_in.addEventListener("touchstart", start);
+canvas_in.addEventListener("touchend", stop);
+
 //window.addEventListener("resize", resize);
 
 //resize();
