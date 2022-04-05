@@ -32,13 +32,6 @@ tf.loadLayersModel('https://raw.githubusercontent.com/mrpukat/mrpukat.github.io/
 canvas_in.addEventListener("mousedown", startM);
 canvas_in.addEventListener("mouseup", stopM);
 
-// Mobile
-canvas_in.addEventListener("touchstart", startT);
-canvas_in.addEventListener("touchend", stopT);
-
-//window.addEventListener("resize", resize);
-
-//resize();
 clearCanvas();
 
 // Aperently the backgrund for a cavas whas not white but black that looks like white
@@ -49,65 +42,25 @@ function clearCanvas() {
 	responceDiv.removeChild(responceDiv.lastChild);
 }
 
-function resize() {
-  ctx_in.canvas.width = window.innerWidth;
-  ctx_in.canvas.height = window.innerHeight;
-}
-
 function reposition(event) {
   coord.x = event.clientX - canvas.offsetLeft;
   coord.y = event.clientY - canvas.offsetTop;
 }
 
 
-function startM(event) {
-  document.addEventListener("mousemove", draw);
-  start(event);
-}
-
-function startT(event) {
-  document.addEventListener("touchmove", drawT);
-  start(event);
-}
-
 function start(event) {
+  document.addEventListener("mousemove", draw);
   reposition(event);
 }
 
-function stopM() {
-  document.removeEventListener("mousemove", draw);
-  stop();
-}
-
-function stopT() {
-  document.removeEventListener("touchmove", drawT);
-  stop();
-}
-
 function stop() {
+  document.removeEventListener("mousemove", draw);
+
   predict_text.innerHTML = "";
   const subImages = formatImage();
   for (let i = 0; i < subImages.length; ++i) {
 	  predictImage(subImages[i]);
   }
-}
-
-function drawT(e) {
-    // stop touch event
-    e.stopPropagation();
-    e.preventDefault();
-
-    // translate to mouse event
-    var clkEvt = document.createEvent('MouseEvent');
-    clkEvt.initMouseEvent('mousemove', true, true, window, e.detail, 
-                 e.touches[0].screenX, e.touches[0].screenY, 
-                 e.touches[0].clientX, e.touches[0].clientY, 
-                 false, false, false, false, 
-                 0, null);
-    canvas_in.dispatchEvent(clkEvt);
-
-    // or just handle touch event
-    //draw(e);
 }
 
 function draw(event) {
