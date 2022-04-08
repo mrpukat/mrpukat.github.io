@@ -29,8 +29,8 @@ tf.loadLayersModel('https://raw.githubusercontent.com/mrpukat/mrpukat.github.io/
 */
 
 // Mouse
-canvas_in.addEventListener("mousedown", startM);
-canvas_in.addEventListener("mouseup", stopM);
+canvas_in.addEventListener("mousedown", start);
+canvas_in.addEventListener("mouseup", stop);
 
 clearCanvas();
 
